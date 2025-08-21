@@ -11,7 +11,7 @@
   color-scheme: light;
   prefersdark: false;
 
-  --color-base-100: #DFE8E6;
+  --color-base-100: #ede9e6;
   --color-base-200: #f7f7f7;
   --color-base-300: #ffffff;
   --color-base-content: #1a1a1a;
@@ -19,8 +19,8 @@
   --color-primary: oklch(62.7% 0.194 149.214);
   --color-primary-content: #ffffff;
 
-  --color-secondary: #0C6170; /* navbar , footer , tranding tips*/
-  --color-secondary-content: #ECFAE5; /*tables*/
+  --color-secondary: #ffffff; /* navbar , footer , tranding tips*/
+  --color-secondary-content: #f2d176; /*tables*/
 
   --color-accent: #06040A;
   --color-accent-content: #000000;
@@ -41,4 +41,11 @@
 
 * {
   font-family: "Nunito Sans", sans-serif;
+}
+
+
+.active {
+  background-color: #e78534;
+  border-radius: 0.25rem;
+  color: white;
 }

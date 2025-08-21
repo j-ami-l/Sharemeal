@@ -4,14 +4,15 @@ import { Outlet } from 'react-router';
 
 const Root = () => {
     return (
-        <div className='lg:grid grid-cols-10'>
-            <div className='mb-10 lg:mb-0 col-span-2'>
-                <Sidebar></Sidebar>
+        <div className="lg:grid grid-cols-[1.5fr_8.5fr]">
+            <div className="mb-30 lg:mb-0">
+                <Sidebar />
             </div>
-            <div className='col-span-8'>
-                <Outlet></Outlet>
+            <div>
+                <Outlet />
             </div>
         </div>
+
     );
 };
 
