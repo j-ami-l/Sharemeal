@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../PRovider/AuthProvider';
 
 const SignUp = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate()
-
+    const { register, signIntWithGoogle , updateuser } = useContext(AuthContext)
     const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -16,18 +17,39 @@ const SignUp = () => {
             setError(
                 'Password must have at least 1 uppercase, 1 lowercase, 1 digit, and be at least 8 characters.'
             );
-           
 
             return;
         }
+        register(email, password)
+            .then(() => {
+                setError(null);
+                updateuser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        navigate('/');
+                    })
+                    .catch((err) => {
+                        setError(err.message);
+                    });
+                form.reset();
+            })
+            .catch(err => {
+                console.log(err);
+
+            })
 
 
 
-       
     };
 
     const handleGoogleSignUp = () => {
-       
+        signIntWithGoogle()
+            .then(result => {
+                console.log(result);
+            })
+            .catch(err => {
+                console.log(err);
+
+            })
     };
 
 
@@ -93,7 +115,7 @@ const SignUp = () => {
                     <button
                         type="button"
                         onClick={handleGoogleSignUp}
-                        className="btn w-full flex items-center bg-neutral gap-3 border hover:bg-[#1A4D2E] hover:text-white"
+                        className="btn w-full flex items-center bg-neutral gap-3 border bg-[#e78534] hover:text-white"
                     >
                         <img
                             src="https://www.svgrepo.com/show/475656/google-color.svg"

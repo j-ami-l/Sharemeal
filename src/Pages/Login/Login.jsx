@@ -1,11 +1,12 @@
-import React, { use, useState } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
+import { AuthContext } from '../../PRovider/AuthProvider';
 
 const Login = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate()
   const location = useLocation()
-
+  const { login, signIntWithGoogle } = useContext(AuthContext)
 
   const from = location.state?.from?.pathname || "/";
 
@@ -14,12 +15,28 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    login(email, password)
+      .then(result => {
+        console.log(result);
+        navigate(from, { replace: true });
+      })
+      .catch(err => {
+        console.log(err);
 
-   
+      })
+
   };
 
   const handleGoogleSignUp = () => {
-    
+    signIntWithGoogle()
+      .then(result => {
+        console.log(result);
+        navigate(from, { replace: true });
+      })
+      .catch(err => {
+        console.log(err);
+
+      })
   };
 
   return (
@@ -79,7 +96,7 @@ const Login = () => {
           <button
             type="button"
             onClick={handleGoogleSignUp}
-            className="btn w-full flex items-center bg-neutral gap-3 border hover:bg-[#1A4D2E] hover:text-white"
+            className="btn w-full flex items-center bg-neutral gap-3 border hover:bg-[#e78534] hover:text-white"
           >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"

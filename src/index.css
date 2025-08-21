@@ -45,7 +45,7 @@
 
 
 .active {
-  background-color: #e78534;
+  background-color: oklch(75% 0.183 55.934);
   border-radius: 0.25rem;
   color: white;
 }
