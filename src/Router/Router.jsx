@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Signup/SignUp";
 import PrivateRouter from "./PrivateRouter";
 import AddFood from "../Pages/AddFood/AddFood";
+import Availablefoods from "../Pages/Availablefoods/Availablefoods";
 
 
 export const router = createBrowserRouter([
@@ -29,7 +30,13 @@ export const router = createBrowserRouter([
                 element: <PrivateRouter>
                     <AddFood></AddFood>
                 </PrivateRouter>
+            },
+            {
+                path: '/availablefoods',
+                element:<Availablefoods></Availablefoods>,
+                loader : ()=> fetch('http://localhost:5000/allfoodpost'),
             }
+
         ]
     }
 ])

@@ -21,11 +21,11 @@ const Sidebar = () => {
 
 
     const links = <>
-        <NavLink to={'/'}><li className="hover:bg-orange-400 hover:text-white rounded px-3 py-2">Home</li></NavLink>
-        <NavLink to={'/availablefoods'}><li className="hover:bg-orange-400 hover:text-white rounded px-3 py-2">Available Foods</li></NavLink>
-        <NavLink to={'/addfood'}><li className="hover:bg-orange-400 hover:text-white rounded px-3 py-2">Add Food</li></NavLink>
-        <NavLink to={'/managemyfood'}><li className="hover:bg-orange-400 hover:text-white rounded px-3 py-2">My Foods</li></NavLink>
-        <NavLink to={'/myrequestfood'}><li className="hover:bg-orange-400 hover:text-white rounded px-3 py-2">My Food Request</li></NavLink>
+        <NavLink to={'/'}><li className="hover:bg-[#f8bc15] hover:text-white rounded px-3 py-2">Home</li></NavLink>
+        <NavLink to={'/availablefoods'}><li className="hover:bg-[#f8bc15] hover:text-white rounded px-3 py-2">Available Foods</li></NavLink>
+        <NavLink to={'/addfood'}><li className="hover:bg-[#f8bc15] hover:text-white rounded px-3 py-2">Add Food</li></NavLink>
+        <NavLink to={'/managemyfood'}><li className="hover:bg-[#f8bc15] hover:text-white rounded px-3 py-2">My Foods</li></NavLink>
+        <NavLink to={'/myrequestfood'}><li className="hover:bg-[#f8bc15] hover:text-white rounded px-3 py-2">My Food Request</li></NavLink>
         {user ?
             <><div className="flex gap-2">
                 <div className="avatar ml-2">
