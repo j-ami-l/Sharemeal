@@ -40,18 +40,15 @@ const AddFood = () => {
     return (
         <div className="max-w-2xl mx-auto mt-20 px-8">
             <div className="card bg-white shadow-xl border border-gray-200">
-                {/* Header */}
                 <div className="bg-[#f8bc15] p-6 rounded-t-xl text-white">
-                    <h2 className="text-2xl font-bold">🍲 Share Your Food</h2>
-                    <p className="text-sm opacity-90">Give a meal, spread happiness ❤️</p>
+                    <h2 className="text-2xl font-bold"> Share Your Food</h2>
+                    <p className="text-sm opacity-90">Give a meal, spread happiness </p>
                 </div>
 
-                {/* Form */}
                 <div className="card-body bg-base-100 rounded-b-xl">
-                    {/* Donor Info */}
                     <div className="flex items-center gap-3 mb-6">
                         <div className="avatar">
-                            <div className="w-12 rounded-full border-2 border-orange-500">
+                            <div className="w-12 rounded-full border-2 border-[#f8bc15]">
                                 <img src={user.photoURL} alt="User" />
                             </div>
                         </div>
@@ -61,7 +58,6 @@ const AddFood = () => {
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Food Name */}
                         <div className="relative">
                             <MdFastfood className="absolute left-3 top-3 text-gray-500" />
                             <input
@@ -73,7 +69,6 @@ const AddFood = () => {
                             />
                         </div>
 
-                        {/* Food Image */}
                         <div className="relative">
                             <MdOutlineImage className="absolute left-3 top-3 text-gray-500" />
                             <input
@@ -84,7 +79,6 @@ const AddFood = () => {
                             />
                         </div>
 
-                        {/* Quantity */}
                         <div className="relative">
                             <BiDish className="absolute left-3 top-3 text-gray-500" />
                             <input
@@ -96,7 +90,6 @@ const AddFood = () => {
                             />
                         </div>
 
-                        {/* Pickup Location */}
                         <div className="relative">
                             <MdOutlineLocationOn className="absolute left-3 top-3 text-gray-500" />
                             <input
@@ -108,7 +101,6 @@ const AddFood = () => {
                             />
                         </div>
 
-                        {/* Expired Date */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-gray-600">Expiry Date</span>
@@ -126,12 +118,11 @@ const AddFood = () => {
                         <input type="hidden" name="notes" defaultValue="" />
                         <input type="hidden" name="status" defaultValue="available" />
 
-                        {/* Submit */}
                         <button
                             type="submit"
                             className="btn w-full bg-orange-400 hover:bg-orange-600 text-white text-lg"
                         >
-                            ➕ Add Food
+                             Add Food
                         </button>
                     </form>
                 </div>

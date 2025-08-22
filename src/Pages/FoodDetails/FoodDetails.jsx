@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
-import CustomModal from '../../Components/CustomModal/CustomModal';
+import FoodRequestModal from '../../Components/CustomModal/FoodRequestModal';
 
 const FoodDetails = () => {
   const food = useLoaderData();
@@ -74,7 +74,7 @@ const FoodDetails = () => {
             </div>
           </div>
           
-          <CustomModal food={food}></CustomModal>
+          <FoodRequestModal food={food}></FoodRequestModal>
         </div>
       </div>
     </div>
