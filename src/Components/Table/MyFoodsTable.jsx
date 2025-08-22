@@ -11,7 +11,6 @@ const MyFoodsTable = ({ Singlefood, handleDelete }) => {
         setFood(updatedFood);
     };
 
-    console.log(food);
     
 
     // format date human-friendly
@@ -19,7 +18,6 @@ const MyFoodsTable = ({ Singlefood, handleDelete }) => {
         dateStyle: 'medium',
         timeStyle: 'short',
     });
-
 
 
     return (
