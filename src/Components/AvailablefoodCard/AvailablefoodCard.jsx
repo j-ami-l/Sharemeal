@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const AvailablefoodCard = ({ post }) => {
-    const { donor, foodImageUrl, foodName, expiredDate } = post;
+    const { donor, foodImageUrl, foodName, expiredDate , _id } = post;
 
     // Format the expiry date to a readable format (e.g., "Aug 27, 2025, 1:06 AM")
     const formattedDate = new Date(expiredDate).toLocaleString('en-US', {
@@ -45,9 +46,11 @@ const AvailablefoodCard = ({ post }) => {
                     <h4 className="text-white text-sm md:text-base">
                         Expires: {formattedDate}
                     </h4>
-                    <button className="btn btn-sm bg-white text-black hover:bg-gray-200 text-sm border-none shadow-md">
-                        See More
-                    </button>
+                    <Link to={`/availablefood/${_id}`}>
+                        <button className="btn btn-sm bg-white text-black hover:bg-gray-200 text-sm border-none shadow-md">
+                            View Details
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

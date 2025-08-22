@@ -39,7 +39,7 @@ const AddFood = () => {
 
     return (
         <div className="max-w-2xl mx-auto mt-20 px-8">
-            <div className="card shadow-xl border border-gray-200">
+            <div className="card bg-white shadow-xl border border-gray-200">
                 {/* Header */}
                 <div className="bg-[#f8bc15] p-6 rounded-t-xl text-white">
                     <h2 className="text-2xl font-bold">🍲 Share Your Food</h2>
