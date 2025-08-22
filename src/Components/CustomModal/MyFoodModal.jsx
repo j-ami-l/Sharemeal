@@ -4,8 +4,10 @@ import { MdFastfood, MdOutlineImage, MdOutlineLocationOn } from "react-icons/md"
 import { BiDish } from "react-icons/bi";
 import { FaPencil } from "react-icons/fa6";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyFoodModal = ({ food, handleUpdates }) => {
+    const api = useAxiosSecure()
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef(null);
   const { user } = use(AuthContext);
@@ -23,7 +25,7 @@ const MyFoodModal = ({ food, handleUpdates }) => {
       image: user.photoURL,
     };
 
-    axios.put(`http://localhost:5000/myfood/update/${food._id}` , UpdateFood)
+    api.put(`/myfood/update/${food._id}` , UpdateFood)
     .then(res=>{
         console.log(res.data);
         handleUpdates(UpdateFood)
