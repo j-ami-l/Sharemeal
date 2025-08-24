@@ -6,12 +6,17 @@ import 'preline/preline';
 import { RouterProvider } from 'react-router';
 import { router } from './Router/Router.jsx';
 import AuthProvider from './PRovider/AuthProvider.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new  QueryClient()
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )

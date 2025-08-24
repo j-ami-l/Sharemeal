@@ -1,22 +1,29 @@
-import React, { use, useEffect, useState } from 'react';
+import React, {  useContext, useEffect, useState } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import MyFoodsTable from './MyFoodsTable';
 import Loading from '../Loading';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../../PRovider/AuthProvider';
 
 const MyFoods = ({ myfoodsPromise }) => {
     const api = useAxiosSecure()
+    const {user} = useContext(AuthContext)
     const [myFoods, setMyFoods] = useState(null)
-    useEffect(() => {
-        myfoodsPromise
-            .then(data => {
-                setMyFoods(data)
-            })
-    }, [myfoodsPromise])
 
-    if (!myFoods) return <Loading></Loading>
+    const {data: myfoods = [], isFetching, refetch , isError, error } = useQuery({
+        queryKey: ['tasks', user?.email],
+        queryFn: async () =>{
+            if(!user) return []
+            const res = await api.get(`/myfoods?email=${user?.email}`)
+            return res.data;
+        },
+        enabled: !!user
+    })   
+
+    if(isFetching) return <Loading></Loading>
 
     const handleDelete = (id) => {
 
@@ -36,8 +43,7 @@ const MyFoods = ({ myfoodsPromise }) => {
 
                 api.delete(`/fooddlt/${id}`)
                     .then(() => {
-                        const newMyFoods = myFoods.filter(p => p._id !== id)
-                        setMyFoods(newMyFoods)
+                        refetch()
                     })
                 Swal.fire({
                     title: "Deleted!",
@@ -63,7 +69,7 @@ const MyFoods = ({ myfoodsPromise }) => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {myFoods?.map((Singlefood) => (
+                        {myfoods?.map((Singlefood) => (
                             <MyFoodsTable key={Singlefood._id}
                                 handleDelete={handleDelete}
                                 Singlefood={Singlefood}></MyFoodsTable>
