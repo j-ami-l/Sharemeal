@@ -1,13 +1,14 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../../PRovider/AuthProvider";
 import { MdFastfood, MdOutlineImage, MdOutlineLocationOn } from "react-icons/md";
 import { BiDish } from "react-icons/bi";
 import { FaStickyNote } from "react-icons/fa";
 import axios from "axios";
+import CustomAlert from "../../Components/CustomAlert/CustomAlert";
 
 const AddFood = () => {
     const { user } = use(AuthContext);
-
+    const [showAlert, setShowAlert] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
         const postTime = new Date();
@@ -15,23 +16,25 @@ const AddFood = () => {
         const formData = new FormData(form);
         const Post = Object.fromEntries(formData.entries());
         Post.donor = {
-            name : user.displayName,
-            email : user.email,
-            image : user.photoURL
+            name: user.displayName,
+            email: user.email,
+            image: user.photoURL
         }
 
 
-        axios.post('http://localhost:5000/addfood' , Post)
-        .then(res=>{
-            console.log(res.data);
-        })
-        .catch(err=>{
-            console.log(err);
-            
-        })
+        axios.post('http://localhost:5000/addfood', Post)
+            .then(res => {
+                console.log(res.data);
+                form.reset();
+                setShowAlert(true);
+            })
+            .catch(err => {
+                console.log(err);
+
+            })
 
 
-        
+
 
         const newPost = { ...Post, postTime };
         console.log(newPost);
@@ -76,6 +79,7 @@ const AddFood = () => {
                                 name="foodImageUrl"
                                 placeholder="Food Image URL"
                                 className="input input-bordered w-full pl-10"
+                                required
                             />
                         </div>
 
@@ -113,7 +117,7 @@ const AddFood = () => {
                             />
                         </div>
 
-                        
+
 
                         <input type="hidden" name="notes" defaultValue="" />
                         <input type="hidden" name="status" defaultValue="available" />
@@ -122,11 +126,20 @@ const AddFood = () => {
                             type="submit"
                             className="btn w-full bg-orange-400 hover:bg-orange-600 text-white text-lg"
                         >
-                             Add Food
+                            Add Food
                         </button>
                     </form>
                 </div>
             </div>
+            <CustomAlert
+                show={showAlert}
+                onClose={() => setShowAlert(false)}
+                type="success"
+                title="Food Uploaded 🎉"
+                message="Your post was uploaded successfully!"
+            >
+
+            </CustomAlert>
         </div>
     );
 };
