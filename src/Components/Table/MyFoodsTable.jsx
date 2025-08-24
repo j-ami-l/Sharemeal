@@ -4,11 +4,14 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { MdDelete } from "react-icons/md";
 import MyFoodModal from '../CustomModal/MyFoodModal';
 
-const MyFoodsTable = ({ Singlefood, handleDelete }) => {
+const MyFoodsTable = ({ Singlefood, handleDelete ,refetch }) => {
     const [food, setFood] = useState(Singlefood);
 
-    const handleUpdates = (updatedFood) => {
-        setFood(updatedFood);
+    const handleUpdates = (data) => {
+        if(data.modifiedCount === 1){
+            refetch()
+        }
+        
     };
 
     

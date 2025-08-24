@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect, useState } from 'react';
+import React, {  useContext } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import MyFoodsTable from './MyFoodsTable';
@@ -8,10 +8,9 @@ import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../PRovider/AuthProvider';
 
-const MyFoods = ({ myfoodsPromise }) => {
+const MyFoods = () => {
     const api = useAxiosSecure()
     const {user} = useContext(AuthContext)
-    const [myFoods, setMyFoods] = useState(null)
 
     const {data: myfoods = [], isFetching, refetch , isError, error } = useQuery({
         queryKey: ['tasks', user?.email],
@@ -72,6 +71,7 @@ const MyFoods = ({ myfoodsPromise }) => {
                         {myfoods?.map((Singlefood) => (
                             <MyFoodsTable key={Singlefood._id}
                                 handleDelete={handleDelete}
+                                refetch={refetch}
                                 Singlefood={Singlefood}></MyFoodsTable>
                         ))}
                     </Tbody>

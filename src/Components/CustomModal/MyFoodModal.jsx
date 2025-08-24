@@ -5,6 +5,7 @@ import { BiDish } from "react-icons/bi";
 import { FaPencil } from "react-icons/fa6";
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
 
 const MyFoodModal = ({ food, handleUpdates }) => {
     const api = useAxiosSecure()
@@ -12,24 +13,40 @@ const MyFoodModal = ({ food, handleUpdates }) => {
   const modalRef = useRef(null);
   const { user } = use(AuthContext);
 
+
+
+
+
+  const UpdateFoodMutation = useMutation({
+    mutationFn: async (UpdateFood) =>{
+      const res = await api.put(`/myfood/update/${food._id}` , UpdateFood);
+      return res.data;
+    },
+    onSuccess: (data)=>{
+      handleUpdates(data)
+      setIsOpen(false)
+    },
+     onError: (error) => {
+      console.error('Update failed:', error.message);
+    },
+  })
+
   const handleSubmitUpdate = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
-    const UpdateFood = Object.fromEntries(formData.entries());
+    const updateFood = Object.fromEntries(formData.entries());
 
-    UpdateFood.donor = {
+    updateFood.donor = {
       name: user.displayName,
       email: user.email,
       image: user.photoURL,
     };
 
-    api.put(`/myfood/update/${food._id}` , UpdateFood)
-    .then(res=>{
-        console.log(res.data);
-        handleUpdates(UpdateFood)
-    })
+    
+
+    UpdateFoodMutation.mutate(updateFood)
     
   };
 
