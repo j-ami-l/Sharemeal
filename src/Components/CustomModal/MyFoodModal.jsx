@@ -3,12 +3,12 @@ import { AuthContext } from "../../PRovider/AuthProvider";
 import { MdFastfood, MdOutlineImage, MdOutlineLocationOn } from "react-icons/md";
 import { BiDish } from "react-icons/bi";
 import { FaPencil } from "react-icons/fa6";
-import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const MyFoodModal = ({ food, handleUpdates }) => {
-    const api = useAxiosSecure()
+  const api = useAxiosSecure()
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef(null);
   const { user } = use(AuthContext);
@@ -16,17 +16,23 @@ const MyFoodModal = ({ food, handleUpdates }) => {
 
 
 
-
   const UpdateFoodMutation = useMutation({
-    mutationFn: async (UpdateFood) =>{
-      const res = await api.put(`/myfood/update/${food._id}` , UpdateFood);
+    mutationFn: async (UpdateFood) => {
+      const res = await api.put(`/myfood/update/${food._id}`, UpdateFood);
       return res.data;
     },
-    onSuccess: (data)=>{
+    onSuccess: (data) => {
       handleUpdates(data)
       setIsOpen(false)
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Food Updated successfuly",
+        showConfirmButton: false,
+        timer: 1500
+      });
     },
-     onError: (error) => {
+    onError: (error) => {
       console.error('Update failed:', error.message);
     },
   })
@@ -44,10 +50,10 @@ const MyFoodModal = ({ food, handleUpdates }) => {
       image: user.photoURL,
     };
 
-    
+
 
     UpdateFoodMutation.mutate(updateFood)
-    
+
   };
 
   return (
@@ -157,7 +163,7 @@ const MyFoodModal = ({ food, handleUpdates }) => {
                   type="submit"
                   className="btn w-full bg-orange-400 hover:bg-orange-600 text-white text-lg"
                 >
-                   Update Food
+                  Update Food
                 </button>
               </form>
             </div>

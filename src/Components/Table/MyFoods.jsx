@@ -1,4 +1,4 @@
-import React, {  useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import MyFoodsTable from './MyFoodsTable';
@@ -7,22 +7,22 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../PRovider/AuthProvider';
+import CustomAlert from '../CustomAlert/CustomAlert';
 
 const MyFoods = () => {
     const api = useAxiosSecure()
-    const {user} = useContext(AuthContext)
-
-    const {data: myfoods = [], isFetching, refetch , isError, error } = useQuery({
+    const { user } = useContext(AuthContext)
+    const { data: myfoods = [], isFetching, refetch, isError, error } = useQuery({
         queryKey: ['tasks', user?.email],
-        queryFn: async () =>{
-            if(!user) return []
+        queryFn: async () => {
+            if (!user) return []
             const res = await api.get(`/myfoods?email=${user?.email}`)
             return res.data;
         },
         enabled: !!user
-    })   
+    })
 
-    if(isFetching) return <Loading></Loading>
+    if (isFetching) return <Loading></Loading>
 
     const handleDelete = (id) => {
 
@@ -77,7 +77,6 @@ const MyFoods = () => {
                     </Tbody>
                 </Table>
             </div>
-
         </div>
     );
 };

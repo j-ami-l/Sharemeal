@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomAlert from '../../Components/CustomAlert/CustomAlert';
+import Banner from '../../Components/Banner/Banner';
 
 const Home = () => {
     return (
-        <div>
-            <CustomAlert></CustomAlert>
+        <div className='relative '>
+            <Banner></Banner>
         </div>
     );
 };
