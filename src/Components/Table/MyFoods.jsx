@@ -6,7 +6,7 @@ import Loading from '../Loading';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
-import { AuthContext } from '../../PRovider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const MyFoods = () => {
     const api = useAxiosSecure()

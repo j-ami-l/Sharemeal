@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
-import { AuthContext } from '../PRovider/AuthProvider';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const useAxiosSecure = () => {
     const api = axios.create({

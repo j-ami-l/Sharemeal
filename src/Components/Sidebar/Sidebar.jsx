@@ -3,7 +3,7 @@ import { FiMenu, FiX } from "react-icons/fi"; // Menu + Close icons
 import { IoMdClose } from "react-icons/io";
 import logo from "../../assets/logo.png"
 import { NavLink, useNavigate } from "react-router";
-import { AuthContext } from "../../PRovider/AuthProvider";
+import { AuthContext } from "../../Provider/AuthProvider";
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useContext(AuthContext)

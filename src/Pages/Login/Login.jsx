@@ -1,6 +1,6 @@
 import React, { use, useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { AuthContext } from '../../PRovider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
   const [error, setError] = useState(null);

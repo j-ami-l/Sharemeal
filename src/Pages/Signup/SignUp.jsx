@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { AuthContext } from '../../PRovider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const SignUp = () => {
     const [error, setError] = useState(null);

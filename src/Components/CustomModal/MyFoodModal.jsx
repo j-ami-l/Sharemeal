@@ -1,5 +1,5 @@
 import React, { useState, useRef, use } from "react";
-import { AuthContext } from "../../PRovider/AuthProvider";
+import { AuthContext } from "../../Provider/AuthProvider";
 import { MdFastfood, MdOutlineImage, MdOutlineLocationOn } from "react-icons/md";
 import { BiDish } from "react-icons/bi";
 import { FaPencil } from "react-icons/fa6";

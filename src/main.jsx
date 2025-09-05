@@ -6,7 +6,7 @@ import 'preline/preline';
 import { RouterProvider } from 'react-router';
 import { router } from './Router/Router.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import AuthProvider from './PRovider/AuthProvider.jsx';
+import AuthProvider from './Provider/AuthProvider.jsx';
 
 const queryClient = new  QueryClient()
 

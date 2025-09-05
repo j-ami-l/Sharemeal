@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router';
 import AvailablefoodCard from '../../Components/AvailablefoodCard/AvailablefoodCard';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { AuthContext } from '../../PRovider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Availablefoods = () => {
   // const allpost = useLoaderData();
