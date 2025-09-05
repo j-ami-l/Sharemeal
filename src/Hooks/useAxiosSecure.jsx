@@ -4,7 +4,7 @@ import { AuthContext } from '../PRovider/AuthProvider';
 
 const useAxiosSecure = () => {
     const api = axios.create({
-        baseURL : 'http://localhost:5000'
+        baseURL : import.meta.env.VITE_URL
     })
     const {user} = useContext(AuthContext)
 

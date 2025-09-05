@@ -4,11 +4,11 @@ import { Outlet } from 'react-router';
 
 const Root = () => {
     return (
-        <div className="lg:grid grid-cols-10">
-            <div className="mb-30 lg:mb-0 col-span-2">
+        <div className="lg:grid grid-cols-8">
+            <div className="mb-30 lg:mb-0 col-span-1">
                 <Sidebar />
             </div>
-            <div className='col-span-8 p-10'>
+            <div className='col-span-7 lg:p-10 mx-2'>
                 <Outlet />
             </div>
         </div>

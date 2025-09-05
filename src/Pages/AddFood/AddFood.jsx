@@ -22,7 +22,7 @@ const AddFood = () => {
         }
 
 
-        axios.post('http://localhost:5000/addfood', Post)
+        axios.post(`${import.meta.env.VITE_URL}/addfood`, Post)
             .then(res => {
                 console.log(res.data);
                 form.reset();
@@ -32,8 +32,6 @@ const AddFood = () => {
                 console.log(err);
 
             })
-
-
 
 
         const newPost = { ...Post, postTime };
@@ -59,52 +57,31 @@ const AddFood = () => {
                             <h1 className="font-semibold text-lg">{user.displayName}</h1>
                         </div>
                     </div>
-
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="relative">
                             <MdFastfood className="absolute left-3 top-3 text-gray-500" />
-                            <input
-                                type="text"
-                                name="foodName"
-                                placeholder="Food Name"
-                                className="input input-bordered w-full pl-10"
+                            <input type="text" name="foodName" placeholder="Food Name" className="input input-bordered w-full pl-10"
                                 required
                             />
                         </div>
-
                         <div className="relative">
                             <MdOutlineImage className="absolute left-3 top-3 text-gray-500" />
-                            <input
-                                type="url"
-                                name="foodImageUrl"
-                                placeholder="Food Image URL"
-                                className="input input-bordered w-full pl-10"
+                            <input type="url"  name="foodImageUrl" placeholder="Food Image URL" className="input input-bordered w-full pl-10"
                                 required
                             />
                         </div>
-
                         <div className="relative">
                             <BiDish className="absolute left-3 top-3 text-gray-500" />
-                            <input
-                                type="text"
-                                name="foodquantity"
-                                placeholder="Quantity (e.g. 5 plates)"
-                                className="input input-bordered w-full pl-10"
+                            <input type="text" name="foodquantity" placeholder="Quantity (e.g. 5 plates)" className="input input-bordered w-full pl-10"
                                 required
                             />
                         </div>
-
                         <div className="relative">
                             <MdOutlineLocationOn className="absolute left-3 top-3 text-gray-500" />
-                            <input
-                                type="text"
-                                name="pickupLocation"
-                                placeholder="Pickup Location"
-                                className="input input-bordered w-full pl-10"
+                            <input type="text" name="pickupLocation"  placeholder="Pickup Location" className="input input-bordered w-full pl-10"
                                 required
                             />
                         </div>
-
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-gray-600">Expiry Date</span>
@@ -116,12 +93,8 @@ const AddFood = () => {
                                 required
                             />
                         </div>
-
-
-
                         <input type="hidden" name="notes" defaultValue="" />
                         <input type="hidden" name="status" defaultValue="available" />
-
                         <button
                             type="submit"
                             className="btn w-full bg-orange-400 hover:bg-orange-600 text-white text-lg"

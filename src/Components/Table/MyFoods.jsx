@@ -7,7 +7,6 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../PRovider/AuthProvider';
-import CustomAlert from '../CustomAlert/CustomAlert';
 
 const MyFoods = () => {
     const api = useAxiosSecure()

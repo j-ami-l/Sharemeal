@@ -7,7 +7,6 @@ const AvailablefoodCard = ({ post }) => {
     // Format the expiry date to a readable format (e.g., "Aug 27, 2025, 1:06 AM")
     const formattedDate = new Date(expiredDate).toLocaleString('en-US', {
         dateStyle: 'medium',
-        timeStyle: 'short',
     });
 
     return (
@@ -43,11 +42,11 @@ const AvailablefoodCard = ({ post }) => {
                     </div>
                 </div>
                 <div className="flex items-center justify-between">
-                    <h4 className="text-white text-sm md:text-base">
+                    <h4 className="text-white text-[10px] md:text-base">
                         Expires: {formattedDate}
                     </h4>
                     <Link to={`/availablefood/${_id}`}>
-                        <button className="btn btn-sm bg-white text-black hover:bg-gray-200 text-sm border-none shadow-md">
+                        <button className="btn btn-sm bg-white text-black hover:bg-gray-200 text-[10px] border-none shadow-md">
                             View Details
                         </button>
                     </Link>

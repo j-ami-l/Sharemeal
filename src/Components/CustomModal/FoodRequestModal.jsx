@@ -31,7 +31,7 @@ const FoodRequestModal = ({ food }) => {
         requestData.FoodId = food._id;
     
         console.log("Request Data:", requestData);
-        axios.post('http://localhost:5000/addrequest' , requestData)
+        axios.post(`${import.meta.env.VITE_URL}/addrequest` , requestData)
         .then(res=>{
             console.log(res.data);
             

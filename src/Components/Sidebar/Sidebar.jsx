@@ -58,7 +58,6 @@ const Sidebar = () => {
                 </ul>
             </div>
 
-
             <div className="lg:hidden fixed top-0 left-0 right-0 bg-secondary text-gray-800 flex justify-between items-center px-5 py-4 z-50">
                 <img className="w-35" src={logo} alt="" />
                 {!isOpen && <button className="text-2xl" onClick={() => setIsOpen(true)}>

@@ -3,7 +3,7 @@ import Banner from '../../Components/Banner/Banner';
 
 const Home = () => {
     return (
-        <div className='relative '>
+        <div className='relative px-10'>
             <Banner></Banner>
         </div>
     );

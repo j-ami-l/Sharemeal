@@ -36,15 +36,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/availablefoods',
-                element: <Availablefoods></Availablefoods>,
-                loader: () => fetch('http://localhost:5000/allfoodpost'),
+                element: <Availablefoods></Availablefoods>
             },
             {
                 path: '/availablefood/:id',
                 element: <PrivateRouter>
                     <FoodDetails></FoodDetails>
                 </PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/fooddetails/${params.id}`)
             }, 
             {
                 path: "/managemyfood",
