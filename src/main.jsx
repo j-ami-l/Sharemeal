@@ -5,8 +5,8 @@ import App from './App.jsx'
 import 'preline/preline';
 import { RouterProvider } from 'react-router';
 import { router } from './Router/Router.jsx';
-import AuthProvider from './PRovider/AuthProvider.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import AuthProvider from './PRovider/AuthProvider.jsx';
 
 const queryClient = new  QueryClient()
 
