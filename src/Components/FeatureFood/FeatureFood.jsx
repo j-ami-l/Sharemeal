@@ -55,7 +55,7 @@ const FeatureFood = () => {
                 <span className="text-white text-[10px] md:text-sm">
                   Featured Item
                 </span>
-                <Link to={`/featuredfood/${food._id}`}>
+                <Link to={`/availablefood/${food._id}`}>
                   <button className="btn btn-sm bg-white text-black hover:bg-gray-200 text-[10px] border-none shadow-md">
                     View Details
                   </button>

@@ -4,6 +4,8 @@ import FoodRequestModal from '../../Components/CustomModal/FoodRequestModal';
 
 const FoodDetails = () => {
   const food = useLoaderData();
+  
+  
   const {
     donor,
     expiredDate,
@@ -64,13 +66,13 @@ const FoodDetails = () => {
 
           <div className="flex items-center gap-3 mt-4">
             <img
-              src={donor.image}
-              alt={donor.name}
+              src={donor?.image}
+              alt={donor?.name}
               className="w-12 h-12 rounded-full border"
             />
             <div>
-              <p className="font-medium text-gray-800">{donor.name}</p>
-              <p className="text-sm text-gray-500">{donor.email}</p>
+              <p className="font-medium text-gray-800">{donor?.name}</p>
+              <p className="text-sm text-gray-500">{donor?.email}</p>
             </div>
           </div>
           

@@ -9,6 +9,8 @@ import Availablefoods from "../Pages/Availablefoods/Availablefoods";
 import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 import ManageFoods from "../Pages/ManageFoods/ManageFoods";
 import MyRequests from "../Pages/MyRequests/MyRequests";
+import ERROR from "../Pages/ERROR/ERROR";
+import Loading from "../Components/Loading";
 
 
 export const router = createBrowserRouter([
@@ -43,8 +45,25 @@ export const router = createBrowserRouter([
                 element: <PrivateRouter>
                     <FoodDetails></FoodDetails>
                 </PrivateRouter>,
-                loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/fooddetails/${params.id}`)
-            }, 
+                loader: async ({ params }) => {
+                    const res = await fetch(`${import.meta.env.VITE_URL}/fooddetails/${params.id}`);
+                    // Check for non-successful responses
+                    if (!res.ok) {
+                        // Handle based on status code
+                        if (res.status === 404) {
+                            throw new Response('Food item not found', { status: 404 });
+                        } else if (res.status === 400) {
+                            throw new Response('Invalid ID format', { status: 400 });
+                        } else {
+                            throw new Response('Server error occurred', { status: 500 });
+                        }
+                    }
+
+                    return res.json();
+                },
+                errorElement: <ERROR></ERROR>,
+                hydrateFallbackElement: <Loading></Loading>
+            },
             {
                 path: "/managemyfood",
                 element: <PrivateRouter>
@@ -56,8 +75,15 @@ export const router = createBrowserRouter([
                 element: <PrivateRouter>
                     <MyRequests></MyRequests>
                 </PrivateRouter>
+            },
+            {
+                path: "/*",
+                element: <ERROR></ERROR>
             }
 
         ]
+    }, {
+        path: "/*",
+        element: <ERROR></ERROR>
     }
 ])
