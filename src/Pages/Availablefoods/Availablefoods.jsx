@@ -8,7 +8,6 @@ import { AuthContext } from '../../Provider/AuthProvider';
 const Availablefoods = () => {
   // const allpost = useLoaderData();
   const api = useAxiosSecure()
-  const { user } = useContext(AuthContext)
   const [search, setSearch] = useState("");
   const [gridCol, setGridCol] = useState(3)
   const handleSearch = e => {
@@ -27,11 +26,9 @@ const Availablefoods = () => {
   const { data: allpost = [], isFetching, refetch, isError, error } = useQuery({
     queryKey: ['allpost', search],
     queryFn: async () => {
-      if (!user) return []
       const res = await api.get(`/allfoodpost?search=${search}`)
       return res.data;
-    },
-    enabled: !!user
+    }
   })
 
 
