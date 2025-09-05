@@ -23,8 +23,7 @@ const AddFood = () => {
 
 
         axios.post(`${import.meta.env.VITE_URL}/addfood`, Post)
-            .then(res => {
-                console.log(res.data);
+            .then(() => {
                 form.reset();
                 setShowAlert(true);
             })
@@ -35,7 +34,6 @@ const AddFood = () => {
 
 
         const newPost = { ...Post, postTime };
-        console.log(newPost);
     };
 
     return (

@@ -16,8 +16,6 @@ const Availablefoods = () => {
     const s = e.target.value;
     if (s) {
       setSearch(s)
-      console.log(s);
-      console.log(search);
     }
     if (!s) {
       setSearch("")

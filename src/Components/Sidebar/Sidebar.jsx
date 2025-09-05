@@ -12,8 +12,7 @@ const Sidebar = () => {
 
     const handlelogout = () => {
         logout()
-            .then(result => {
-                console.log(result);
+            .then(() => {
                 navigate('/')
             })
     }
