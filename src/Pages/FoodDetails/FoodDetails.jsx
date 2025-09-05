@@ -23,7 +23,7 @@ const FoodDetails = () => {
 
 
   return (
-    <div className="max-w-md mx-auto my-10">
+    <div className="max-w-md px-2 mx-auto my-10">
       <div className="bg-white shadow-lg rounded-2xl overflow-hidden">
 
         <img

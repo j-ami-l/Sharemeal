@@ -1,12 +1,13 @@
-import React, { use, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const [error, setError] = useState(null);
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { login, signIntWithGoogle } = useContext(AuthContext)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login, signIntWithGoogle } = useContext(AuthContext);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -15,37 +16,41 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
     login(email, password)
-      .then(result => {
-        console.log(result);
+      .then(() => {
+        setError(null);
+        toast.success("Logged in successfully 🎉");
         navigate(from, { replace: true });
       })
-      .catch(err => {
-        console.log(err);
-
-      })
-
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+        toast.error(err.message);
+      });
   };
 
   const handleGoogleSignUp = () => {
     signIntWithGoogle()
-      .then(result => {
-        console.log(result);
+      .then(() => {
+        toast.success("Signed in with Google ✅");
         navigate(from, { replace: true });
       })
-      .catch(err => {
-        console.log(err);
-
-      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+        toast.error(err.message);
+      });
   };
 
   return (
-    <div className="lg:min-h-screen flex items-center justify-center  px-4">
+    <div className="lg:min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md p-8 shadow-lg bg-secondary-content rounded-lg">
         <h2 className="text-3xl font-bold text-center color-primary mb-6">
           Sign in to Your Account
         </h2>
 
+        {/* Keep inline error for fallback */}
         {error && (
           <div className="text-red-500 text-sm mb-4 text-center border border-red-300 p-2 rounded">
             {error}
@@ -54,7 +59,9 @@ const Login = () => {
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-accent-content mb-1">Email</label>
+            <label className="block text-sm font-medium text-accent-content mb-1">
+              Email
+            </label>
             <input
               name="email"
               type="email"
@@ -64,7 +71,9 @@ const Login = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-accent-content mb-1">Password</label>
+            <label className="block text-sm font-medium text-accent-content mb-1">
+              Password
+            </label>
             <input
               name="password"
               type="password"
@@ -75,9 +84,14 @@ const Login = () => {
           </div>
 
           <div className="flex justify-between items-center text-sm text-gray-600">
-            <Link to={'/resetPass'} className="link link-hover text-primary className='text-[11px] md:text-[15px]'">Forgot password?</Link>
-            <span className='text-[11px] text-primary md:text-[15px]'>
-              Don’t have an account?{' '}
+            <Link
+              to="/resetPass"
+              className="link link-hover text-primary text-[11px] md:text-[15px]"
+            >
+              Forgot password?
+            </Link>
+            <span className="text-[11px] text-primary md:text-[15px]">
+              Don’t have an account?{" "}
               <Link to="/signup" className="text-blue-400 font-medium underline">
                 Register
               </Link>
@@ -86,7 +100,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="btn bg-[#e78534] text-white w-full "
+            className="btn bg-[#e78534] text-white w-full"
           >
             Login
           </button>

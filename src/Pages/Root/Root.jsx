@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import { Outlet } from 'react-router';
+import { Toaster } from 'react-hot-toast';
 
 const Root = () => {
     return (
@@ -11,6 +12,7 @@ const Root = () => {
             <div className='col-span-7 lg:p-10 mx-2'>
                 <Outlet />
             </div>
+             <Toaster position="top-center" reverseOrder={false} />
         </div>
 
     );

@@ -1,48 +1,49 @@
-import React, { useState, useRef, use } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
-import { Navigate } from "react-router";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const FoodRequestModal = ({ food }) => {
     const [isOpen, setIsOpen] = useState(false);
     const modalRef = useRef(null);
-    const { user } = use(AuthContext);
-
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
     const {
         _id,
         donor,
         expiredDate,
         foodImageUrl,
         foodName,
-        foodquantity,
-        notes,
         pickupLocation,
-        status,
     } = food;
 
-    
     const handleSubmitUpdate = (e) => {
-        
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const requestData = Object.fromEntries(formData.entries());
-        requestData.requestDate = new Date;
-        requestData.FoodId = food._id;
-    
-        console.log("Request Data:", requestData);
-        axios.post(`${import.meta.env.VITE_URL}/addrequest` , requestData)
-        .then(res=>{
-            console.log(res.data);
-            
-        })
-        .catch(err=>{
-            console.log(err);
-            
-        })
 
-        setIsOpen(false);
+        requestData.requestDate = new Date();
+        requestData.FoodId = food._id;
+
+        axios
+            .post(`${import.meta.env.VITE_URL}/addrequest`, requestData)
+            .then((res) => {
+                if (res.data?.acknowledged) {
+                    toast.success("Food request submitted successfully 🎉");
+                    navigate('/myrequestfood');
+                } else {
+                    toast.error("Something went wrong. Please try again.");
+                }
+                setIsOpen(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Failed to submit request ❌");
+            });
     };
+
     return (
         <div>
             <button
@@ -53,7 +54,7 @@ const FoodRequestModal = ({ food }) => {
             </button>
 
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex justify-center items-center bg-black/50">
+                <div className="fixed px-2 inset-0 z-[100] flex justify-center items-center bg-black/50">
                     <div
                         className="relative shadow-2xl bg-white p-6 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
                         ref={modalRef}
@@ -189,7 +190,6 @@ const FoodRequestModal = ({ food }) => {
                     </div>
                 </div>
             )}
-
         </div>
     );
 };
